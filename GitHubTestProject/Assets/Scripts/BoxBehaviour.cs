@@ -6,15 +6,21 @@ using UnityEngine;
 
 public class BoxBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] float rotationSpeed = 10f;
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// OnMouseDrag is called when the user has clicked on a GUIElement or Collider
+    /// and is still holding down the mouse.
+    /// </summary>
+    void OnMouseDrag()
     {
+        float rotationX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
+        float rotationY = Input.GetAxis("Mouse Y") * rotationSpeed * Mathf.Deg2Rad;
+    
+        // transform.RotateAround(Vector3.up, -rotationX);
+        // transform.RotateAround(Vector3.right, -rotationY);
         
+        transform.Rotate(Vector3.up, -rotationX, Space.Self);
+        transform.Rotate(Vector3.right, -rotationY, Space.Self);
     }
 }
